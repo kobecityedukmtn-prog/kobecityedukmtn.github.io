@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173f68">
+  <meta name="description" content="神戸アイランド高等学校の公式ホームページです。一人ひとりの「学びたい」を大切にする学校です。">
+  <title>神戸アイランド高等学校｜学びたいことが学べる学校</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --blue: #173f68;
+      --blue-light: #35658f;
+      --cream: #f3f6f9;
+      --paper: #fffefa;
+      --gold: #c8ad78;
+      --ink: #26323d;
+      --muted: #687581;
+      --line: #dfe6ec;
+      --serif: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+      --sans: "Yu Gothic", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+
+    .site-header {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1440px;
+      min-height: 88px;
+      margin: auto;
+      padding: 18px 6.2%;
+      background: var(--paper);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      color: var(--blue);
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: 1rem;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 2.8vw, 42px);
+      font-size: .83rem;
+      letter-spacing: .04em;
+    }
+
+    .desktop-nav a:not(.nav-cta):hover { color: var(--blue-light); }
+
+    .nav-cta {
+      padding: 11px 20px;
+      border: 1px solid var(--blue);
+      color: var(--blue);
+      transition: background .2s, color .2s;
+    }
+
+    .nav-cta:hover { background: var(--blue); color: white; }
+
+    .mobile-nav { display: none; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 570px;
+      background: #eaf5fa;
+      color: var(--blue);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(400px, 1.1fr);
+      align-items: center;
+      max-width: 1440px;
+      min-height: 570px;
+      margin: auto;
+      padding: 48px 6.2%;
+    }
+
+    .hero-copy { position: relative; z-index: 1; padding: 28px 0 42px; }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 25px;
+      color: var(--blue-light);
+      font-size: .78rem;
+      letter-spacing: .17em;
+    }
+
+    .eyebrow::before { width: 34px; height: 1px; background: var(--blue-light); content: ""; }
+
+    .hero h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4.55rem);
+      font-weight: 500;
+      letter-spacing: .06em;
+      line-height: 1.5;
+    }
+
+    .hero h1 span { color: #2582a8; }
+
+    .hero-lead {
+      max-width: 460px;
+      margin: 21px 0 31px;
+      color: #536978;
+      font-size: .93rem;
+      letter-spacing: .04em;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid #d5c18e;
+      color: white;
+      font-size: .84rem;
+      letter-spacing: .08em;
+    }
+
+    .hero .text-link {
+      border-color: var(--blue-light);
+      color: var(--blue);
+    }
+
+    .hero .text-link span { color: var(--blue-light); }
+
+    .text-link span { color: #d5c18e; font-size: 1.1rem; transition: transform .2s; }
+    .text-link:hover span { transform: translateX(5px); }
+
+    .hero-art {
+      width: 100%;
+      max-height: 440px;
+      overflow: visible;
+      filter: drop-shadow(0 18px 26px rgb(23 63 104 / 18%));
+    }
+
+    .hero-note {
+      position: absolute;
+      right: 6.2%;
+      bottom: 25px;
+      color: rgb(23 63 104 / 58%);
+      font-size: .68rem;
+      letter-spacing: .12em;
+    }
+
+    .section { padding: 92px 6.2%; }
+    .section-inner { max-width: 1120px; margin: auto; }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 38px;
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--blue-light);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .section h2 {
+      margin: 0;
+      color: var(--blue);
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      font-weight: 500;
+      letter-spacing: .07em;
+    }
+
+    .section-intro { max-width: 440px; margin: 0; color: var(--muted); font-size: .86rem; }
+
+    .news { background: var(--cream); }
+
+    .news-list { border-top: 1px solid var(--line); }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 120px 112px 1fr 24px;
+      align-items: center;
+      gap: 18px;
+      min-height: 74px;
+      border-bottom: 1px solid var(--line);
+      font-size: .86rem;
+    }
+
+    .news-date { color: var(--muted); font-size: .78rem; }
+
+    .news-tag {
+      justify-self: start;
+      padding: 2px 10px;
+      border: 1px solid #c9d6e1;
+      color: var(--blue-light);
+      font-size: .68rem;
+      letter-spacing: .03em;
+    }
+
+    .news-title { font-weight: 500; }
+    .news-arrow { color: var(--gold); font-size: 1.1rem; }
+    .news-item:hover .news-title { color: var(--blue-light); }
+
+    .learning { background: var(--paper); }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .feature-card {
+      min-height: 255px;
+      padding: 29px 27px;
+      border: 1px solid var(--line);
+      background: white;
+    }
+
+    .feature-number {
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-style: italic;
+    }
+
+    .feature-card h3 {
+      margin: 20px 0 10px;
+      color: var(--blue);
+      font-family: var(--serif);
+      font-size: 1.24rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+    }
+
+    .feature-card p { margin: 0; color: var(--muted); font-size: .82rem; }
+
+    .school-life {
+      position: relative;
+      overflow: hidden;
+      background: #eaf0f5;
+    }
+
+    .life-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 64px;
+      max-width: 1120px;
+      margin: auto;
+    }
+
+    .life-art {
+      display: grid;
+      overflow: hidden;
+      min-height: 300px;
+      place-items: center;
+      background: linear-gradient(145deg, #d9eff6, #a9d8e6);
+    }
+
+    .life-art svg { width: 100%; height: 100%; min-height: 300px; }
+    .life-copy p { margin: 17px 0 25px; color: var(--muted); font-size: .88rem; }
+    .text-link-dark { border-color: var(--blue); color: var(--blue); }
+    .text-link-dark span { color: var(--blue-light); }
+
+    .admission {
+      padding: 78px 6.2%;
+      background: var(--blue);
+      color: white;
+      text-align: center;
+    }
+
+    .admission .section-kicker { color: #d7c292; }
+    .admission h2 { color: white; }
+    .admission p { margin: 14px 0 26px; color: #e5edf5; font-size: .86rem; }
+
+    .admission-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 28px;
+      padding: 12px 23px;
+      border: 1px solid #d7c292;
+      color: white;
+      font-size: .84rem;
+      letter-spacing: .06em;
+      transition: background .2s, color .2s;
+    }
+
+    .admission-link:hover { background: #d7c292; color: var(--blue); }
+
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: 1440px;
+      margin: auto;
+      padding: 25px 6.2%;
+      color: var(--muted);
+      font-size: .72rem;
+    }
+
+    .footer-brand { color: var(--blue); font-family: var(--serif); font-size: .9rem; letter-spacing: .06em; }
+
+    @media (max-width: 850px) {
+      .site-header { padding-right: 5%; padding-left: 5%; }
+      .desktop-nav { gap: 17px; font-size: .76rem; }
+      .nav-cta { padding: 9px 13px; }
+      .hero-inner { grid-template-columns: 1fr 1fr; padding-right: 5%; padding-left: 5%; }
+      .hero-art { min-width: 0; }
+      .section { padding-right: 5%; padding-left: 5%; }
+      .life-inner { gap: 36px; }
+    }
+
+    @media (max-width: 650px) {
+      .site-header { min-height: 72px; padding: 13px 6%; }
+      .brand { gap: 10px; font-size: 1rem; }
+      .brand-mark { width: 36px; height: 36px; }
+      .desktop-nav { display: none; }
+      .mobile-nav { position: relative; display: block; }
+      .mobile-nav summary {
+        padding: 7px 12px;
+        border: 1px solid var(--line);
+        color: var(--blue);
+        cursor: pointer;
+        font-size: .8rem;
+        list-style: none;
+      }
+      .mobile-nav summary::-webkit-details-marker { display: none; }
+      .mobile-nav summary::after { margin-left: 9px; content: "＋"; }
+      .mobile-nav[open] summary::after { content: "－"; }
+      .mobile-links {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        z-index: 3;
+        display: grid;
+        min-width: 190px;
+        padding: 8px 16px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        box-shadow: 0 12px 24px rgb(20 40 60 / 12%);
+        font-size: .82rem;
+      }
+      .mobile-links a { padding: 9px 0; }
+      .hero-inner { grid-template-columns: 1fr; gap: 0; min-height: auto; padding: 54px 7% 76px; }
+      .hero-copy { padding: 10px 0 0; }
+      .hero h1 { font-size: clamp(2.5rem, 11vw, 3.65rem); }
+      .hero-lead { max-width: 390px; font-size: .86rem; }
+      .hero-art { width: min(100%, 430px); max-height: 280px; margin: -5px auto 0; }
+      .hero-note { right: 7%; bottom: 17px; font-size: .6rem; }
+      .section { padding-top: 66px; padding-bottom: 66px; }
+      .section-heading { align-items: start; flex-direction: column; gap: 12px; margin-bottom: 27px; }
+      .section-intro { font-size: .82rem; }
+      .news-item { grid-template-columns: 94px 1fr 20px; gap: 8px 12px; padding: 14px 0; }
+      .news-tag { grid-column: 2; grid-row: 1; }
+      .news-date { grid-column: 1; grid-row: 1; }
+      .news-title { grid-column: 1 / 3; grid-row: 2; }
+      .news-arrow { grid-column: 3; grid-row: 1 / 3; }
+      .feature-grid { grid-template-columns: 1fr; gap: 12px; }
+      .feature-card { min-height: auto; padding: 22px; }
+      .feature-card h3 { margin-top: 10px; }
+      .life-inner { grid-template-columns: 1fr; gap: 28px; }
+      .life-art { min-height: 225px; }
+      .admission { padding: 62px 7%; }
+      .site-footer { align-items: flex-start; flex-direction: column; padding: 22px 7%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="神戸アイランド高等学校 ホーム">
+      <span class="brand-mark" aria-hidden="true">学</span>
+      <span>神戸アイランド高等学校</span>
+    </a>
+    <nav class="desktop-nav" aria-label="メインメニュー">
+      <a href="#learning">学びについて</a>
+      <a href="school-life.html">学校生活</a>
+      <a href="#news">お知らせ</a>
+      <a class="nav-cta" href="#admission">入学をお考えの方へ</a>
+    </nav>
+    <details class="mobile-nav">
+      <summary>メニュー</summary>
+      <nav class="mobile-links" aria-label="メインメニュー">
+        <a href="#learning">学びについて</a>
+        <a href="school-life.html">学校生活</a>
+        <a href="#news">お知らせ</a>
+        <a href="#admission">入学をお考えの方へ</a>
+      </nav>
+    </details>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">LEARN YOUR WAY</p>
+          <h1 id="hero-title">学びたいことが<br><span>学べる学校。</span></h1>
+          <p class="hero-lead">一人ひとりの「好き」や「知りたい」を、未来につながる学びへ。自分らしい一歩を、ここから始めませんか。</p>
+          <a class="text-link" href="#learning">神戸アイランド高等学校の学び <span aria-hidden="true">→</span></a>
+        </div>
+        <svg class="hero-art" viewBox="0 0 720 470" role="img" aria-labelledby="hero-art-title">
+          <title id="hero-art-title">青空と海、港に停泊する船を望む神戸の港の風景</title>
+          <defs>
+            <linearGradient id="harbor-sky" x2="0" y2="1">
+              <stop stop-color="#75c5e5"/>
+              <stop offset="1" stop-color="#e2f5fb"/>
+            </linearGradient>
+            <linearGradient id="harbor-water" x2="0" y2="1">
+              <stop stop-color="#46b2d0"/>
+              <stop offset="1" stop-color="#187ca9"/>
+            </linearGradient>
+            <linearGradient id="ship-hull" x2="0" y2="1">
+              <stop stop-color="#f9faf5"/>
+              <stop offset="1" stop-color="#d8e8eb"/>
+            </linearGradient>
+            <filter id="photo-softness" x="-5%" y="-5%" width="110%" height="110%">
+              <feGaussianBlur stdDeviation=".35"/>
+            </filter>
+            <clipPath id="harbor-frame"><rect x="4" y="4" width="712" height="462" rx="22"/></clipPath>
+          </defs>
+          <g clip-path="url(#harbor-frame)">
+            <rect width="720" height="290" fill="url(#harbor-sky)"/>
+            <circle cx="548" cy="92" r="43" fill="#fff9dc" opacity=".82"/>
+            <path d="M76 90c10-20 42-20 52 0 21-7 40 7 39 22H64c-2-10 3-18 12-22zm202-37c9-16 34-17 43-1 17-5 33 7 31 18h-84c-1-8 3-14 10-17z" fill="#fff" opacity=".74"/>
+            <path d="M0 245c88-17 144 3 213-5 73-9 128-34 216-17 75 15 167-2 291-14v93H0z" fill="#b8d8d7"/>
+            <path d="M0 270c113-15 203 4 292-5 112-12 236-28 428-6v74H0z" fill="#91bfc3"/>
+            <g fill="#91abb0" opacity=".9">
+              <path d="M73 198h21v55H73zm25-26h31v81H98zm39 15h25v63h-25zm32-36h31v99h-31zm39 22h23v80h-23zm41-43h29v122h-29zm36 26h21v96h-21z"/>
+              <path d="M479 194h25v59h-25zm32-24h38v84h-38zm45 11h29v69h-29zm37-36h36v105h-36zm44 22h26v85h-26z"/>
+            </g>
+            <g fill="none" stroke="#587d8d" stroke-width="4" opacity=".82">
+              <path d="M136 225V93h70v132m-70-112h70m-46-20v132m214 0V72h75v153m-75-127h75m-48-26v153"/>
+              <path d="M156 94h-18l-37 67m221-89h-23l-51 64m267 86v-85h50v85m-50-64h50"/>
+            </g>
+            <rect y="286" width="720" height="184" fill="url(#harbor-water)"/>
+            <path d="M0 302c105-13 195 7 297-5 112-13 248-18 423-2v24c-164-11-292-4-413 8-107 11-198-4-307 8z" fill="#8bd3df" opacity=".65"/>
+            <g opacity=".44" stroke="#d7f6f7" stroke-width="3">
+              <path d="M24 339h185m40 0h88m92 0h234M78 371h106m70 0h219m49 0h144M0 412h155m72 0h195m42 0h196"/>
+            </g>
+            <g filter="url(#photo-softness)">
+              <path d="M61 300h199l-21 41H89z" fill="url(#ship-hull)"/>
+              <path d="M120 275h85v26h-85zm17-18h45v18h-45z" fill="#fbfcf8"/>
+              <path d="M155 258v-20m0 8h26" stroke="#6b8f9b" stroke-width="3"/>
+              <path d="M109 311h129" stroke="#478ba2" stroke-width="4"/>
+              <path d="M486 313h174l-18 34H510z" fill="#eaf4f1"/>
+              <path d="M534 287h78v26h-78zm16-17h39v17h-39z" fill="#fdfcf3"/>
+              <path d="M563 270v-16m0 7h20" stroke="#708f98" stroke-width="3"/>
+            </g>
+            <path d="M0 437c141-18 250-4 369-11 138-8 234-2 351-17v61H0z" fill="#2c7887" opacity=".5"/>
+            <rect width="720" height="470" fill="#fff" opacity=".035"/>
+          </g>
+        </svg>
+      </div>
+      <span class="hero-note">KOBE ISLAND HIGH SCHOOL</span>
+    </section>
+
+    <section class="section news" id="news" aria-labelledby="news-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">News &amp; Topics</span>
+            <h2 id="news-title">お知らせ</h2>
+          </div>
+          <p class="section-intro">学校からのお知らせや、説明会・入試に関する情報をご案内します。</p>
+        </div>
+        <div class="news-list">
+          <a class="news-item" href="#admission">
+            <time class="news-date">随時更新</time>
+            <span class="news-tag">入試情報</span>
+            <span class="news-title">入学案内・募集要項について</span>
+            <span class="news-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="news-item" href="#admission">
+            <time class="news-date">随時更新</time>
+            <span class="news-tag">イベント</span>
+            <span class="news-title">学校説明会・個別相談のご案内</span>
+            <span class="news-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="news-item" href="#life">
+            <time class="news-date">随時更新</time>
+            <span class="news-tag">学校生活</span>
+            <span class="news-title">学校生活の様子を紹介します</span>
+            <span class="news-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section learning" id="learning" aria-labelledby="learning-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">Our Learning</span>
+            <h2 id="learning-title">自分の「学びたい」を、かたちに。</h2>
+          </div>
+          <p class="section-intro">興味を深め、仲間と学び合いながら、自分だけの可能性を見つけていきます。</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-number">01</span>
+            <h3>興味から広がる学び</h3>
+            <p>幅広い学びに触れながら、自分の関心や将来につながるテーマを見つけます。</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">02</span>
+            <h3>一人ひとりに寄り添う</h3>
+            <p>先生と相談しながら、自分に合った目標や学び方を考えていきます。</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">03</span>
+            <h3>仲間とともに成長する</h3>
+            <p>対話や協働を通して、違いを認め合い、新しい視点に出会います。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section school-life" id="life" aria-labelledby="life-title">
+      <div class="life-inner">
+        <div class="life-art">
+          <svg viewBox="0 0 720 400" role="img" aria-label="青空の下、船が行き交う神戸の港の風景" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="life-sky" x2="0" y2="1">
+                <stop stop-color="#66bde0"/>
+                <stop offset="1" stop-color="#e3f6fa"/>
+              </linearGradient>
+              <linearGradient id="life-sea" x2="0" y2="1">
+                <stop stop-color="#49b3cf"/>
+                <stop offset="1" stop-color="#177da8"/>
+              </linearGradient>
+            </defs>
+            <rect width="720" height="255" fill="url(#life-sky)"/>
+            <circle cx="558" cy="72" r="37" fill="#fff7d9" opacity=".8"/>
+            <path d="M90 73c13-23 45-18 51-1 18-5 33 8 30 18H79c-1-7 3-14 11-17zm179-32c10-16 34-13 39 1 16-3 26 6 25 13h-72c0-6 3-12 8-14z" fill="white" opacity=".78"/>
+            <path d="M0 207c92-23 162-4 242-19 95-18 154-13 248 1 79 12 147-10 230-18v86H0z" fill="#9abfc2"/>
+            <g fill="#829fa8">
+              <path d="M78 186v-66h30v66zm38 0V99h40v87zm49 0v-52h31v52zm338 0v-83h36v83zm43 0v-54h35v54zm45 0v-97h41v97z"/>
+            </g>
+            <g fill="none" stroke="#547b8a" stroke-width="4">
+              <path d="M97 176V67h58v109m-58-87h58m-35-22v109m383 0V49h62v127m-62-100h62m-39-27v127"/>
+              <path d="M111 67H95l-32 58m421-76h-18l-43 53"/>
+            </g>
+            <rect y="220" width="720" height="180" fill="url(#life-sea)"/>
+            <path d="M0 236c129-14 236 8 347-4 126-13 246-13 373 2v22c-144-12-243-3-364 8-128 12-231-6-356 7z" fill="#a3e2e8" opacity=".7"/>
+            <g opacity=".4" stroke="#e1faf8" stroke-width="3">
+              <path d="M20 284h163m55 0h119m73 0h234M79 321h137m74 0h202m53 0h150M0 363h146m66 0h249m62 0h197"/>
+            </g>
+            <path d="M234 218h189l-20 37H259z" fill="#f6faf6"/>
+            <path d="M286 188h75v30h-75zm18-21h41v21h-41z" fill="#fffdf4"/>
+            <path d="M326 167v-17m0 8h22" stroke="#7595a0" stroke-width="3"/>
+            <path d="M260 230h140" stroke="#4d91a5" stroke-width="4"/>
+            <path d="M225 370c137-22 284-2 495-23v53H225z" fill="#236e85" opacity=".38"/>
+          </svg>
+        </div>
+        <div class="life-copy">
+          <span class="section-kicker">School Life</span>
+          <h2 id="life-title">学びも、日々の時間も。</h2>
+          <p>授業や行事、友人との何気ない会話。毎日の経験を重ねながら、自分らしい学校生活をつくっていきます。</p>
+          <a class="text-link text-link-dark" href="school-life.html">学校生活について <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="admission" id="admission" aria-labelledby="admission-title">
+      <span class="section-kicker">For Prospective Students</span>
+      <h2 id="admission-title">ここから始まる、新しい学び。</h2>
+      <p>学校説明会や入学に関するご相談など、お気軽にお問い合わせください。<br>お電話：<a href="tel:+81780000000">(078)000-0000</a></p>
+      <a class="admission-link" href="tel:+81780000000">お電話でのお問い合わせ <span aria-hidden="true">→</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="#top">神戸アイランド高等学校</a>
+    <span>兵庫県神戸市●●区●●町1-1-1　｜　<a href="tel:+81780000000">(078)000-0000</a></span>
+    <span>© 神戸アイランド高等学校</span>
+  </footer>
+</body>
+</html>
