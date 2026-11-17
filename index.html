@@ -185,6 +185,74 @@
     .section { padding: 92px 6.2%; }
     .section-inner { max-width: 1120px; margin: auto; }
 
+    .weather { padding-top: 48px; padding-bottom: 48px; background: #f5f8fa; }
+    .weather .section-heading { margin-bottom: 20px; }
+    .weather h2 { font-size: 1.5rem; }
+    .weather .section-intro { font-size: .78rem; }
+
+    .weather-panel {
+      display: grid;
+      grid-template-columns: minmax(220px, .8fr) minmax(0, 1.2fr);
+      gap: 18px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: white;
+    }
+
+    .weather-current {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 160px;
+      padding: 16px;
+      background: #eaf5fa;
+      color: var(--blue);
+    }
+
+    .weather-location, .weather-date, .weather-description, .weather-temperature, .weather-feels {
+      margin: 0;
+    }
+
+    .weather-location { font-size: .78rem; letter-spacing: .08em; }
+    .weather-date { color: var(--muted); font-size: .74rem; }
+    .weather-condition { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+    .weather-icon { font-size: 1.6rem; line-height: 1; }
+    .weather-description { font-size: .82rem; }
+    .weather-temperature { margin-top: 2px; font-family: var(--serif); font-size: 2rem; line-height: 1.25; }
+    .weather-feels { color: var(--muted); font-size: .74rem; }
+
+    .weather-forecast-wrap { min-width: 0; align-self: center; }
+    .weather-forecast-wrap h3 { margin: 0 0 8px; color: var(--blue); font-family: var(--serif); font-size: .95rem; font-weight: 500; }
+    .weather-forecast { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .weather-day { display: grid; justify-items: center; gap: 4px; padding: 10px 5px; border: 1px solid var(--line); text-align: center; }
+    .weather-day-name { color: var(--muted); font-size: .68rem; }
+    .weather-day-icon { font-size: 1.15rem; line-height: 1.2; }
+    .weather-day-description { min-height: 1.5em; color: var(--ink); font-size: .68rem; }
+    .weather-day-temperatures { color: var(--blue); font-size: .7rem; white-space: nowrap; }
+    .weather-day-precipitation { color: var(--muted); font-size: .64rem; }
+
+    .weather-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 12px; margin-top: 8px; }
+    .weather-meta div { color: var(--muted); font-size: .72rem; }
+    .weather-meta strong { display: block; color: var(--ink); font-size: .82rem; font-weight: 500; }
+
+    .weather-footer {
+      display: flex;
+      grid-column: 1 / -1;
+      align-items: center;
+      gap: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .7rem;
+    }
+
+    .weather-status { flex: 1; }
+    .weather-refresh { padding: 5px 10px; border: 1px solid var(--blue); background: white; color: var(--blue); font: inherit; cursor: pointer; }
+    .weather-refresh:hover { background: var(--blue); color: white; }
+    .weather-refresh:disabled { cursor: wait; opacity: .6; }
+    .weather-attribution a { text-decoration: underline; text-underline-offset: 2px; }
+
     .section-heading {
       display: flex;
       align-items: end;
@@ -351,6 +419,7 @@
       .hero-art { min-width: 0; }
       .section { padding-right: 5%; padding-left: 5%; }
       .life-inner { gap: 36px; }
+      .weather-panel { padding: 16px; }
     }
 
     @media (max-width: 650px) {
@@ -391,8 +460,29 @@
       .hero-art { width: min(100%, 430px); max-height: 280px; margin: -5px auto 0; }
       .hero-note { right: 7%; bottom: 17px; font-size: .6rem; }
       .section { padding-top: 66px; padding-bottom: 66px; }
+      .weather { padding-top: 30px; padding-bottom: 30px; }
       .section-heading { align-items: start; flex-direction: column; gap: 12px; margin-bottom: 27px; }
       .section-intro { font-size: .82rem; }
+      .weather .section-heading { gap: 0; margin-bottom: 12px; }
+      .weather .section-intro { display: none; }
+      .weather-panel { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 8px; padding: 8px; }
+      .weather-current { min-height: 0; padding: 10px; }
+      .weather-condition { gap: 4px; margin-top: 4px; }
+      .weather-icon { font-size: 1.2rem; }
+      .weather-description { font-size: .72rem; }
+      .weather-temperature { font-size: 1.5rem; }
+      .weather-feels { font-size: .65rem; }
+      .weather-meta { display: none; }
+      .weather-forecast-wrap h3 { margin-bottom: 5px; font-size: .78rem; }
+      .weather-forecast { gap: 3px; }
+      .weather-day { gap: 2px; padding: 6px 2px; }
+      .weather-day-name, .weather-day-description { font-size: .58rem; }
+      .weather-day-icon { font-size: .95rem; }
+      .weather-day-temperatures { font-size: .58rem; white-space: normal; }
+      .weather-day-precipitation { font-size: .54rem; }
+      .weather-footer { flex-wrap: wrap; gap: 7px; font-size: .64rem; }
+      .weather-status { flex-basis: calc(100% - 65px); }
+      .weather-attribution { width: 100%; }
       .news-item { grid-template-columns: 94px 1fr 20px; gap: 8px 12px; padding: 14px 0; }
       .news-tag { grid-column: 2; grid-row: 1; }
       .news-date { grid-column: 1; grid-row: 1; }
@@ -614,6 +704,43 @@
       <p>学校説明会や入学に関するご相談など、お気軽にお問い合わせください。<br>お電話：<a href="tel:+81780000000">(078)000-0000</a></p>
       <a class="admission-link" href="tel:+81780000000">お電話でのお問い合わせ <span aria-hidden="true">→</span></a>
     </section>
+
+    <section class="section weather" id="weather" aria-labelledby="weather-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">Local Weather</span>
+            <h2 id="weather-title">神戸市の天気</h2>
+          </div>
+          <p class="section-intro">現在の天気と、今日から3日間の予報をお知らせします。</p>
+        </div>
+        <div class="weather-panel" id="weather-panel" aria-busy="true">
+          <div class="weather-current">
+            <p class="weather-location">兵庫県神戸市</p>
+            <p class="weather-date" id="weather-date">—</p>
+            <div class="weather-condition">
+              <span class="weather-icon" id="weather-icon" aria-hidden="true">—</span>
+              <p class="weather-description" id="weather-description">—</p>
+            </div>
+            <p class="weather-temperature"><span id="weather-temperature">--</span>°C</p>
+            <p class="weather-feels">体感 <span id="weather-feels">--</span>°C</p>
+            <div class="weather-meta">
+              <div>湿度<strong id="weather-humidity">--</strong></div>
+              <div>風速<strong id="weather-wind">--</strong></div>
+            </div>
+          </div>
+          <div class="weather-forecast-wrap">
+            <h3>今日から3日間</h3>
+            <ul class="weather-forecast" id="weather-forecast" aria-label="神戸市の3日間予報"></ul>
+          </div>
+          <div class="weather-footer">
+            <span class="weather-status" id="weather-status" role="status" aria-live="polite">天気情報を取得しています...</span>
+            <button class="weather-refresh" id="weather-refresh" type="button">更新</button>
+            <small class="weather-attribution"><a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Weather data by Open-Meteo.com</a></small>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -621,5 +748,130 @@
     <span>兵庫県神戸市●●区●●町1-1-1　｜　<a href="tel:+81780000000">(078)000-0000</a></span>
     <span>© 神戸アイランド高等学校</span>
   </footer>
+  <script>
+    const kobeWeatherUrl = "https://api.open-meteo.com/v1/forecast?latitude=34.6901&longitude=135.1955&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&forecast_days=3&timezone=Asia%2FTokyo";
+    const weatherDescriptions = {
+      0: ["快晴", "☀️"], 1: ["おおむね晴れ", "🌤️"], 2: ["一部くもり", "⛅"], 3: ["くもり", "☁️"],
+      45: ["霧", "🌫️"], 48: ["着氷性の霧", "🌫️"], 51: ["弱い霧雨", "🌦️"], 53: ["霧雨", "🌦️"],
+      55: ["強い霧雨", "🌧️"], 56: ["弱い凍雨", "🌧️"], 57: ["強い凍雨", "🌧️"], 61: ["弱い雨", "🌧️"],
+      63: ["雨", "🌧️"], 65: ["強い雨", "🌧️"], 66: ["弱い凍雨", "🌧️"], 67: ["強い凍雨", "🌧️"],
+      71: ["弱い雪", "🌨️"], 73: ["雪", "🌨️"], 75: ["大雪", "❄️"], 77: ["細氷", "❄️"],
+      80: ["弱いにわか雨", "🌦️"], 81: ["にわか雨", "🌧️"], 82: ["強いにわか雨", "🌧️"],
+      85: ["弱いにわか雪", "🌨️"], 86: ["強いにわか雪", "❄️"], 95: ["雷雨", "⛈️"],
+      96: ["ひょうを伴う雷雨", "⛈️"], 99: ["強いひょうを伴う雷雨", "⛈️"]
+    };
+
+    function weatherForCode(code) {
+      return weatherDescriptions[code] || ["天気情報なし", "—"];
+    }
+
+    function formatTemperature(value) {
+      return Number.isFinite(value) ? Math.round(value) : "--";
+    }
+
+    function formatWeatherDate(date) {
+      return new Intl.DateTimeFormat("ja-JP", {
+        month: "long",
+        day: "numeric",
+        weekday: "short",
+        timeZone: "Asia/Tokyo"
+      }).format(new Date(`${date}T00:00:00+09:00`));
+    }
+
+    function addForecastDay(container, date, code, high, low, precipitation) {
+      const [description, icon] = weatherForCode(code);
+      const item = document.createElement("li");
+      item.className = "weather-day";
+
+      const dateLabel = document.createElement("span");
+      dateLabel.className = "weather-day-name";
+      dateLabel.textContent = formatWeatherDate(date);
+
+      const iconLabel = document.createElement("span");
+      iconLabel.className = "weather-day-icon";
+      iconLabel.setAttribute("aria-hidden", "true");
+      iconLabel.textContent = icon;
+
+      const descriptionLabel = document.createElement("span");
+      descriptionLabel.className = "weather-day-description";
+      descriptionLabel.textContent = description;
+
+      const temperatureLabel = document.createElement("span");
+      temperatureLabel.className = "weather-day-temperatures";
+      temperatureLabel.textContent = `${formatTemperature(high)}° / ${formatTemperature(low)}°`;
+      temperatureLabel.setAttribute("aria-label", `最高 ${formatTemperature(high)}度、最低 ${formatTemperature(low)}度`);
+
+      const precipitationLabel = document.createElement("span");
+      precipitationLabel.className = "weather-day-precipitation";
+      precipitationLabel.textContent = precipitation == null ? "降水確率 --" : `降水確率 ${precipitation}%`;
+
+      item.append(dateLabel, iconLabel, descriptionLabel, temperatureLabel, precipitationLabel);
+      container.append(item);
+    }
+
+    async function loadKobeWeather() {
+      const panel = document.getElementById("weather-panel");
+      const status = document.getElementById("weather-status");
+      const refreshButton = document.getElementById("weather-refresh");
+      panel.setAttribute("aria-busy", "true");
+      refreshButton.disabled = true;
+      status.textContent = "天気情報を取得しています...";
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      try {
+        const response = await fetch(kobeWeatherUrl, { signal: controller.signal });
+        if (!response.ok) {
+          throw new Error(`天気情報の取得に失敗しました (HTTP ${response.status})`);
+        }
+
+        const data = await response.json();
+        if (!data.current || !data.daily || !Array.isArray(data.daily.time) || data.daily.time.length < 3) {
+          throw new Error("天気情報の形式が正しくありません");
+        }
+
+        const [description, icon] = weatherForCode(data.current.weather_code);
+        document.getElementById("weather-date").textContent = formatWeatherDate(data.current.time.slice(0, 10));
+        document.getElementById("weather-icon").textContent = icon;
+        document.getElementById("weather-description").textContent = description;
+        document.getElementById("weather-temperature").textContent = formatTemperature(data.current.temperature_2m);
+        document.getElementById("weather-feels").textContent = formatTemperature(data.current.apparent_temperature);
+        document.getElementById("weather-humidity").textContent =
+          Number.isFinite(data.current.relative_humidity_2m) ? `${Math.round(data.current.relative_humidity_2m)}%` : "--";
+        document.getElementById("weather-wind").textContent =
+          Number.isFinite(data.current.wind_speed_10m) ? `${Math.round(data.current.wind_speed_10m)} km/h` : "--";
+
+        const forecast = document.getElementById("weather-forecast");
+        forecast.replaceChildren();
+        data.daily.time.forEach((date, index) => {
+          addForecastDay(
+            forecast,
+            date,
+            data.daily.weather_code[index],
+            data.daily.temperature_2m_max[index],
+            data.daily.temperature_2m_min[index],
+            data.daily.precipitation_probability_max[index]
+          );
+        });
+
+        const updatedAt = new Intl.DateTimeFormat("ja-JP", {
+          hour: "2-digit",
+          minute: "2-digit",
+          timeZone: "Asia/Tokyo"
+        }).format(new Date());
+        status.textContent = `最終更新 ${updatedAt}`;
+      } catch (error) {
+        console.error("神戸市の天気を読み込めませんでした。", error);
+        status.textContent = "天気情報を読み込めませんでした。通信環境を確認して再度お試しください。";
+      } finally {
+        clearTimeout(timeoutId);
+        panel.setAttribute("aria-busy", "false");
+        refreshButton.disabled = false;
+      }
+    }
+
+    document.getElementById("weather-refresh").addEventListener("click", loadKobeWeather);
+    loadKobeWeather();
+  </script>
 </body>
 </html>
