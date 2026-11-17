@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#173f68">
-  <meta name="description" content="神戸アイランド高等学校の公式ホームページです。一人ひとりの「学びたい」を大切にする学校です。">
-  <title>神戸アイランド高等学校｜学びたいことが学べる学校</title>
+  <meta name="description" content="神戸情報化推進高等学校の公式ホームページです。一人ひとりの「学びたい」を大切にする学校です。">
+  <title>神戸情報化推進高等学校｜学びたいことが学べる学校</title>
   <style>
     :root {
       color-scheme: light;
@@ -31,11 +31,15 @@
       color: var(--ink);
       font-family: var(--sans);
       line-height: 1.8;
+      line-break: strict;
+      overflow-wrap: normal;
+      word-break: normal;
       -webkit-font-smoothing: antialiased;
     }
 
     a { color: inherit; text-decoration: none; }
     a:focus-visible, summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    h1, h2, h3 { text-wrap: balance; }
 
     .site-header {
       position: relative;
@@ -64,14 +68,18 @@
 
     .brand-mark {
       display: grid;
-      width: 42px;
-      height: 42px;
+      width: 52px;
+      height: 52px;
       place-items: center;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      color: var(--gold);
-      font-size: 1rem;
+      flex: 0 0 auto;
     }
+
+    .brand-mark svg { display: block; width: 100%; height: 100%; }
+
+    .brand-mark .crest-outline { fill: var(--blue); stroke: var(--gold); stroke-width: 1.8; stroke-linejoin: round; }
+    .brand-mark .crest-inner { fill: none; stroke: var(--gold); stroke-width: .8; opacity: .8; }
+    .brand-mark .crest-rays { fill: none; stroke: var(--gold); stroke-width: 1.8; stroke-linecap: round; }
+    .brand-mark .crest-monogram { fill: var(--paper); font-family: var(--serif); font-size: 25px; font-weight: 700; text-anchor: middle; }
 
     .desktop-nav {
       display: flex;
@@ -81,6 +89,7 @@
       letter-spacing: .04em;
     }
 
+    .desktop-nav a { white-space: nowrap; }
     .desktop-nav a:not(.nav-cta):hover { color: var(--blue-light); }
 
     .nav-cta {
@@ -425,7 +434,7 @@
     @media (max-width: 650px) {
       .site-header { min-height: 72px; padding: 13px 6%; }
       .brand { gap: 10px; font-size: 1rem; }
-      .brand-mark { width: 36px; height: 36px; }
+      .brand-mark { width: 42px; height: 42px; }
       .desktop-nav { display: none; }
       .mobile-nav { position: relative; display: block; }
       .mobile-nav summary {
@@ -452,16 +461,18 @@
         box-shadow: 0 12px 24px rgb(20 40 60 / 12%);
         font-size: .82rem;
       }
-      .mobile-links a { padding: 9px 0; }
+      .mobile-links a { padding: 9px 0; white-space: nowrap; }
       .hero-inner { grid-template-columns: 1fr; gap: 0; min-height: auto; padding: 54px 7% 76px; }
       .hero-copy { padding: 10px 0 0; }
-      .hero h1 { font-size: clamp(2.5rem, 11vw, 3.65rem); }
+      .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); letter-spacing: .03em; line-height: 1.45; }
       .hero-lead { max-width: 390px; font-size: .86rem; }
       .hero-art { width: min(100%, 430px); max-height: 280px; margin: -5px auto 0; }
       .hero-note { right: 7%; bottom: 17px; font-size: .6rem; }
       .section { padding-top: 66px; padding-bottom: 66px; }
       .weather { padding-top: 30px; padding-bottom: 30px; }
       .section-heading { align-items: start; flex-direction: column; gap: 12px; margin-bottom: 27px; }
+      .section h2 { font-size: clamp(1.35rem, 5.4vw, 1.8rem); letter-spacing: .03em; }
+      .feature-card h3 { font-size: 1.1rem; line-height: 1.5; }
       .section-intro { font-size: .82rem; }
       .weather .section-heading { gap: 0; margin-bottom: 12px; }
       .weather .section-intro { display: none; }
@@ -497,6 +508,13 @@
       .site-footer { align-items: flex-start; flex-direction: column; padding: 22px 7%; }
     }
 
+    @media (max-width: 360px) {
+      .site-header { gap: 8px; }
+      .brand { gap: 7px; font-size: .84rem; letter-spacing: .02em; }
+      .brand-mark { width: 34px; height: 34px; }
+      .mobile-nav summary { padding: 6px 7px; font-size: .72rem; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: .01ms !important; }
@@ -505,23 +523,30 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="神戸アイランド高等学校 ホーム">
-      <span class="brand-mark" aria-hidden="true">学</span>
-      <span>神戸アイランド高等学校</span>
+    <a class="brand" href="#top" aria-label="神戸情報化推進高等学校 ホーム">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" focusable="false">
+          <path class="crest-outline" d="M32 3 55 10v18c0 14-9 25-23 33C18 53 9 42 9 28V10z"/>
+          <path class="crest-inner" d="m32 7 19 6v15c0 12-7 21-19 28-12-7-19-16-19-28V13z"/>
+          <path class="crest-rays" d="M21 25v-4m6 4v-7m5 7V14m5 11v-7m6 7v-4M20 28h24"/>
+          <text class="crest-monogram" x="32" y="49">K</text>
+        </svg>
+      </span>
+      <span>神戸情報化推進高等学校</span>
     </a>
     <nav class="desktop-nav" aria-label="メインメニュー">
-      <a href="#learning">学びについて</a>
+      <a href="learning.html">学びについて</a>
       <a href="school-life.html">学校生活</a>
-      <a href="#news">お知らせ</a>
-      <a class="nav-cta" href="#admission">入学をお考えの方へ</a>
+      <a href="news.html">お知らせ</a>
+      <a class="nav-cta" href="admission.html">入学をお考えの方へ</a>
     </nav>
     <details class="mobile-nav">
       <summary>メニュー</summary>
       <nav class="mobile-links" aria-label="メインメニュー">
-        <a href="#learning">学びについて</a>
+        <a href="learning.html">学びについて</a>
         <a href="school-life.html">学校生活</a>
-        <a href="#news">お知らせ</a>
-        <a href="#admission">入学をお考えの方へ</a>
+        <a href="news.html">お知らせ</a>
+        <a href="admission.html">入学をお考えの方へ</a>
       </nav>
     </details>
   </header>
@@ -533,7 +558,7 @@
           <p class="eyebrow">LEARN YOUR WAY</p>
           <h1 id="hero-title">学びたいことが<br><span>学べる学校。</span></h1>
           <p class="hero-lead">一人ひとりの「好き」や「知りたい」を、未来につながる学びへ。自分らしい一歩を、ここから始めませんか。</p>
-          <a class="text-link" href="#learning">神戸アイランド高等学校の学び <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="learning.html">神戸情報化推進高等学校の学び <span aria-hidden="true">→</span></a>
         </div>
         <svg class="hero-art" viewBox="0 0 720 470" role="img" aria-labelledby="hero-art-title">
           <title id="hero-art-title">青空と海、港に停泊する船を望む神戸の港の風景</title>
@@ -588,7 +613,7 @@
           </g>
         </svg>
       </div>
-      <span class="hero-note">KOBE ISLAND HIGH SCHOOL</span>
+      <span class="hero-note">KOBE INFORMATION PROMOTION HIGH SCHOOL</span>
     </section>
 
     <section class="section news" id="news" aria-labelledby="news-title">
@@ -601,19 +626,19 @@
           <p class="section-intro">学校からのお知らせや、説明会・入試に関する情報をご案内します。</p>
         </div>
         <div class="news-list">
-          <a class="news-item" href="#admission">
+          <a class="news-item" href="admission.html">
             <time class="news-date">随時更新</time>
             <span class="news-tag">入試情報</span>
             <span class="news-title">入学案内・募集要項について</span>
             <span class="news-arrow" aria-hidden="true">→</span>
           </a>
-          <a class="news-item" href="#admission">
+          <a class="news-item" href="admission.html">
             <time class="news-date">随時更新</time>
             <span class="news-tag">イベント</span>
             <span class="news-title">学校説明会・個別相談のご案内</span>
             <span class="news-arrow" aria-hidden="true">→</span>
           </a>
-          <a class="news-item" href="#life">
+          <a class="news-item" href="school-life.html">
             <time class="news-date">随時更新</time>
             <span class="news-tag">学校生活</span>
             <span class="news-title">学校生活の様子を紹介します</span>
@@ -744,9 +769,9 @@
   </main>
 
   <footer class="site-footer">
-    <a class="footer-brand" href="#top">神戸アイランド高等学校</a>
+    <a class="footer-brand" href="#top">神戸情報化推進高等学校</a>
     <span>兵庫県神戸市●●区●●町1-1-1　｜　<a href="tel:+81780000000">(078)000-0000</a></span>
-    <span>© 神戸アイランド高等学校</span>
+    <span>© 神戸情報化推進高等学校</span>
   </footer>
   <script>
     const kobeWeatherUrl = "https://api.open-meteo.com/v1/forecast?latitude=34.6901&longitude=135.1955&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&forecast_days=3&timezone=Asia%2FTokyo";
