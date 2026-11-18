@@ -38,10 +38,12 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 .simulation-tag, .wallet-label, .eyebrow, .panel-topline h2, .round-tag, .fighter-side, .fighter-name, .choice-heading, .hand-code, .session-stats span, .bet-label, .input-unit, .quick-bets button, .min-bet, .log-limit, .history-topline, .reset-button, .app-footer { font-family: var(--mono); }
 .simulation-tag { display: inline-flex; align-items: center; gap: 9px; color: var(--muted); font-size: .62rem; letter-spacing: .08em; }
 .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acid); box-shadow: 0 0 12px rgb(197 255 74 / 62%); }
-.wallet { display: flex; align-items: center; gap: 14px; padding: 9px 13px; border: 1px solid var(--line); background: rgb(16 21 30 / 75%); }
-.wallet-label { color: var(--muted); font-size: .62rem; letter-spacing: .12em; }
-.wallet strong { color: var(--acid); font-family: var(--mono); font-size: 1.03rem; font-weight: 500; }
-.wallet small { margin-left: 6px; color: var(--muted); font-size: .58rem; }
+.wallet { display: flex; min-width: 226px; min-height: 68px; align-items: center; gap: 13px; padding: 10px 15px; border: 1px solid rgb(197 255 74 / 38%); background: linear-gradient(115deg, rgb(197 255 74 / 8%), rgb(16 21 30 / 92%) 54%); box-shadow: inset 0 0 24px rgb(197 255 74 / 3%); }
+.wallet-icon { display: grid; width: 34px; height: 34px; flex: 0 0 auto; place-items: center; border: 1px solid rgb(197 255 74 / 34%); background: rgb(197 255 74 / 9%); color: var(--acid); font-size: 1.15rem; text-shadow: 0 0 12px rgb(197 255 74 / 60%); }
+.wallet-copy { display: grid; gap: 3px; }
+.wallet-label { color: var(--muted); font-size: .58rem; letter-spacing: .14em; }
+.wallet strong { color: var(--acid); font-family: var(--mono); font-size: 1.55rem; font-variant-numeric: tabular-nums; font-weight: 500; line-height: 1; text-shadow: 0 0 16px rgb(197 255 74 / 24%); }
+.wallet small { margin-left: 7px; color: var(--muted); font-size: .58rem; }
 
 .intro { padding: 48px 0 30px; }
 .eyebrow { margin: 0 0 14px; color: var(--muted); font-size: .67rem; letter-spacing: .14em; }
@@ -53,6 +55,12 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 .game-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(300px, .85fr); align-items: start; gap: 18px; }
 .panel { border: 1px solid var(--line); background: linear-gradient(145deg, rgb(19 26 37 / 98%), rgb(14 19 27 / 98%)); }
 .match-panel { padding: 22px; }
+.match-panel.win { animation: match-win .9s ease-out; }
+.match-panel.lose { animation: match-lose .48s ease-in-out; }
+.match-panel.win .duel-stage { animation: stage-win .9s ease-out; }
+.match-panel.lose .duel-stage { animation: stage-lose .62s ease-out; }
+.wallet.wallet-win { animation: wallet-gain .82s ease-out; }
+.wallet.wallet-lose { animation: wallet-loss .6s ease-out; }
 .panel-topline { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
 .panel-topline h2 { margin: 0; color: var(--muted); font-size: .69rem; font-weight: 500; letter-spacing: .14em; }
 .round-tag { display: inline-flex; align-items: center; gap: 8px; color: var(--dim); font-size: .61rem; letter-spacing: .07em; }
@@ -144,9 +152,11 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   .topbar { min-height: 66px; gap: 10px; }
   .wordmark { gap: 8px; font-size: .81rem; }
   .wordmark-icon { width: 26px; height: 26px; }
-  .wallet { gap: 8px; padding: 7px 9px; }
-  .wallet-label { font-size: .53rem; }
-  .wallet strong { font-size: .85rem; }
+  .wallet { min-width: 172px; min-height: 58px; gap: 9px; padding: 7px 10px; }
+  .wallet-icon { width: 28px; height: 28px; font-size: 1rem; }
+  .wallet-label { font-size: .52rem; }
+  .wallet strong { font-size: 1.2rem; }
+  .wallet small { margin-left: 5px; font-size: .52rem; }
   .intro { padding: 30px 0 22px; }
   .intro h1 { font-size: clamp(2rem, 9vw, 2.8rem); }
   .intro-copy { font-size: .74rem; }
@@ -163,7 +173,11 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 
 @media (max-width: 360px) {
   .simulation-tag { display: none; }
-  .wallet { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .wallet { min-width: 0; min-height: 48px; gap: 6px; padding: 5px 7px; }
+  .wallet-icon { width: 22px; height: 22px; font-size: .8rem; }
+  .wallet-label { font-size: .44rem; }
+  .wallet strong { font-size: .98rem; }
+  .wallet small { margin-left: 3px; font-size: .46rem; }
   .duel-stage { padding-right: 1%; padding-left: 1%; }
   .fighter-hand { width: 66px; height: 66px; font-size: 2rem; }
   .fighter-side { font-size: .44rem; }
@@ -173,4 +187,38 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+  .match-panel.win, .match-panel.lose, .match-panel.win .duel-stage, .match-panel.lose .duel-stage, .wallet.wallet-win, .wallet.wallet-lose { animation: none; }
+}
+
+@keyframes match-win {
+  0%, 100% { border-color: var(--line); box-shadow: none; transform: scale(1); }
+  35% { border-color: var(--acid); box-shadow: 0 0 36px rgb(197 255 74 / 17%); transform: scale(1.006); }
+}
+
+@keyframes match-lose {
+  0%, 100% { border-color: var(--line); transform: translateX(0); }
+  20% { border-color: var(--red); transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+
+@keyframes stage-win {
+  0%, 100% { border-color: #202936; box-shadow: none; }
+  35% { border-color: rgb(197 255 74 / 62%); box-shadow: inset 0 0 50px rgb(197 255 74 / 11%); }
+}
+
+@keyframes stage-lose {
+  0%, 100% { border-color: #202936; box-shadow: none; }
+  35% { border-color: rgb(255 101 122 / 66%); box-shadow: inset 0 0 46px rgb(255 101 122 / 12%); }
+}
+
+@keyframes wallet-gain {
+  0%, 100% { box-shadow: inset 0 0 24px rgb(197 255 74 / 3%); }
+  42% { border-color: var(--acid); box-shadow: 0 0 28px rgb(197 255 74 / 26%), inset 0 0 30px rgb(197 255 74 / 11%); transform: scale(1.035); }
+}
+
+@keyframes wallet-loss {
+  0%, 100% { box-shadow: inset 0 0 24px rgb(197 255 74 / 3%); }
+  35% { border-color: var(--red); box-shadow: 0 0 23px rgb(255 101 122 / 22%), inset 0 0 24px rgb(255 101 122 / 9%); }
 }

@@ -17,8 +17,11 @@
       </a>
       <span class="simulation-tag"><span class="live-dot" aria-hidden="true"></span>SIMULATION / NO CASH VALUE</span>
       <div class="wallet" aria-label="現在の所持クレジット">
-        <span class="wallet-label">WALLET</span>
-        <strong><span id="balance">1,000</span><small>CR</small></strong>
+        <span class="wallet-icon" aria-hidden="true">◈</span>
+        <div class="wallet-copy">
+          <span class="wallet-label">YOUR BALANCE</span>
+          <strong><span id="balance">1,000</span><small>CR</small></strong>
+        </div>
       </div>
     </header>
 
@@ -187,6 +190,17 @@
       round += 1;
       records[outcome] += 1;
 
+      const matchPanel = document.querySelector(".match-panel");
+      const wallet = document.querySelector(".wallet");
+      matchPanel.classList.remove("win", "lose");
+      wallet.classList.remove("wallet-win", "wallet-lose");
+      if (outcome !== "draw") {
+        void matchPanel.offsetWidth;
+        void wallet.offsetWidth;
+        matchPanel.classList.add(outcome);
+        wallet.classList.add(`wallet-${outcome}`);
+      }
+
       document.getElementById("player-hand").textContent = playerChoice.icon;
       document.getElementById("cpu-hand").textContent = cpuChoice.icon;
       document.getElementById("round-number").textContent = String(round).padStart(3, "0");
@@ -265,6 +279,8 @@
       document.getElementById("draws").textContent = "0";
       gameMessage.textContent = "ベットを決めて、出す手を選べ。";
       gameMessage.className = "game-message";
+      document.querySelector(".match-panel").classList.remove("win", "lose");
+      document.querySelector(".wallet").classList.remove("wallet-win", "wallet-lose");
       document.querySelector(".round-tag").classList.remove("win", "lose", "draw");
       historyList.replaceChildren();
       const emptyMessage = document.createElement("li");
