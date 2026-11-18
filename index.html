@@ -431,6 +431,36 @@
       .weather-panel { padding: 16px; }
     }
 
+    @media (min-width: 651px) and (max-width: 760px) {
+      .desktop-nav { display: none; }
+      .mobile-nav { position: relative; display: block; }
+      .mobile-nav summary {
+        padding: 7px 12px;
+        border: 1px solid var(--line);
+        color: var(--blue);
+        cursor: pointer;
+        font-size: .8rem;
+        list-style: none;
+      }
+      .mobile-nav summary::-webkit-details-marker { display: none; }
+      .mobile-nav summary::after { margin-left: 9px; content: "＋"; }
+      .mobile-nav[open] summary::after { content: "－"; }
+      .mobile-links {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        z-index: 3;
+        display: grid;
+        min-width: 190px;
+        padding: 8px 16px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        box-shadow: 0 12px 24px rgb(20 40 60 / 12%);
+        font-size: .82rem;
+      }
+      .mobile-links a { padding: 9px 0; white-space: nowrap; }
+    }
+
     @media (max-width: 650px) {
       .site-header { min-height: 72px; padding: 13px 6%; }
       .brand { gap: 10px; font-size: 1rem; }

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090c12">
+  <meta name="description" content="ゲーム内クレジットをベットしてCPUと勝負する、クールなじゃんけんアリーナ。">
+  <title>HAND//BET — じゃんけんアリーナ</title>
+  <link rel="stylesheet" href="janken.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="wordmark" href="janken.html" aria-label="HAND BET ホーム">
+        <span class="wordmark-icon" aria-hidden="true">✦</span>
+        <span>HAND<span class="wordmark-slash">//</span>BET</span>
+      </a>
+      <span class="simulation-tag"><span class="live-dot" aria-hidden="true"></span>SIMULATION / NO CASH VALUE</span>
+      <div class="wallet" aria-label="現在の所持クレジット">
+        <span class="wallet-label">WALLET</span>
+        <strong><span id="balance">1,000</span><small>CR</small></strong>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow"><span>01</span> &nbsp; ROCK · PAPER · SCISSORS</p>
+        <h1>読み切れ。<span>勝ち取れ。</span></h1>
+        <p class="intro-copy">手を選ぶ前に、ベットを決める。勝てばプラス、負ければマイナス。<br class="desktop-break">あいこならコインはそのまま。</p>
+      </section>
+
+      <div class="game-grid">
+        <section class="match-panel panel" aria-labelledby="match-title">
+          <div class="panel-topline">
+            <h2 id="match-title">THE ARENA</h2>
+            <span class="round-tag"><span class="live-dot" aria-hidden="true"></span>ROUND <strong id="round-number">001</strong></span>
+          </div>
+
+          <div class="duel-stage">
+            <div class="fighter">
+              <span class="fighter-side">PLAYER <span class="side-mark">01</span></span>
+              <span class="fighter-hand" id="player-hand" aria-hidden="true">?</span>
+              <span class="fighter-name">YOU</span>
+            </div>
+            <div class="versus"><span>VS</span><i></i></div>
+            <div class="fighter">
+              <span class="fighter-side">OPPONENT <span class="side-mark">02</span></span>
+              <span class="fighter-hand" id="cpu-hand" aria-hidden="true">?</span>
+              <span class="fighter-name">CPU</span>
+            </div>
+          </div>
+
+          <p class="game-message" id="game-message" role="status" aria-live="polite">ベットを決めて、出す手を選べ。</p>
+
+          <div class="choice-heading">
+            <span>CHOOSE YOUR HAND</span>
+            <span>WIN RATE <b>1 : 1</b></span>
+          </div>
+          <div class="hand-picker" role="group" aria-label="出す手を選ぶ">
+            <button class="hand-button" type="button" data-hand="グー">
+              <span class="hand-icon" aria-hidden="true">✊</span><span class="hand-name">グー</span><span class="hand-code">ROCK</span>
+            </button>
+            <button class="hand-button" type="button" data-hand="チョキ">
+              <span class="hand-icon" aria-hidden="true">✌️</span><span class="hand-name">チョキ</span><span class="hand-code">SCISSORS</span>
+            </button>
+            <button class="hand-button" type="button" data-hand="パー">
+              <span class="hand-icon" aria-hidden="true">✋</span><span class="hand-name">パー</span><span class="hand-code">PAPER</span>
+            </button>
+          </div>
+
+          <div class="session-stats" aria-label="今回の成績">
+            <div><span>WINS</span><strong id="wins">0</strong></div>
+            <div><span>LOSSES</span><strong id="losses">0</strong></div>
+            <div><span>DRAWS</span><strong id="draws">0</strong></div>
+          </div>
+        </section>
+
+        <aside class="side-column">
+          <section class="bet-panel panel" aria-labelledby="bet-title">
+            <div class="panel-topline">
+              <h2 id="bet-title">PLACE YOUR BET</h2>
+              <span class="min-bet">MIN 10 CR</span>
+            </div>
+            <label class="bet-label" for="bet-input">BET AMOUNT <span>CR</span></label>
+            <div class="bet-input-wrap">
+              <span aria-hidden="true">◈</span>
+              <input id="bet-input" type="number" min="10" step="10" value="100" inputmode="numeric" aria-describedby="bet-help">
+              <span class="input-unit">CR</span>
+            </div>
+            <div class="quick-bets" role="group" aria-label="ベット額をすばやく選択">
+              <button type="button" data-bet="50">50</button>
+              <button type="button" data-bet="100">100</button>
+              <button type="button" data-bet="250">250</button>
+              <button type="button" data-bet="max">MAX</button>
+            </div>
+            <p class="bet-help" id="bet-help" role="status" aria-live="polite">勝てばベットと同額の利益。負けるとベット分を失います。</p>
+
+            <div class="payout-preview" aria-label="ベット結果の見込み">
+              <div><span>WIN</span><strong id="win-return">+100 CR</strong></div>
+              <div><span>LOSE</span><strong id="lose-return">−100 CR</strong></div>
+              <div><span>DRAW</span><strong>REFUND</strong></div>
+            </div>
+
+            <div class="wallet-note"><span aria-hidden="true">ⓘ</span> クレジットはゲーム内専用です。換金・購入はできません。</div>
+            <button class="reset-button" id="reset-button" type="button">RESET SESSION <span aria-hidden="true">↻</span></button>
+          </section>
+
+          <section class="history-panel panel" aria-labelledby="history-title">
+            <div class="panel-topline">
+              <h2 id="history-title">MATCH LOG</h2>
+              <span class="log-limit">LATEST 6</span>
+            </div>
+            <ol class="history-list" id="history-list" aria-live="polite">
+              <li class="history-empty">まだ対戦履歴はありません。</li>
+            </ol>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <span>HAND//BET <span class="footer-divider">—</span> ROCK · PAPER · SCISSORS</span>
+      <span>SIMULATED CREDITS ONLY / NO REAL-MONEY GAMBLING</span>
+    </footer>
+  </div>
+
+  <script>
+    const hands = [
+      { name: "グー", icon: "✊" },
+      { name: "チョキ", icon: "✌️" },
+      { name: "パー", icon: "✋" }
+    ];
+    const startingBalance = 1000;
+    let balance = startingBalance;
+    let round = 0;
+    const records = { win: 0, lose: 0, draw: 0 };
+    const balanceDisplay = document.getElementById("balance");
+    const betInput = document.getElementById("bet-input");
+    const betHelp = document.getElementById("bet-help");
+    const historyList = document.getElementById("history-list");
+    const gameMessage = document.getElementById("game-message");
+
+    function formatCredits(amount) {
+      return new Intl.NumberFormat("ja-JP").format(amount);
+    }
+
+    function updateBetPreview() {
+      const amount = Number(betInput.value);
+      const valid = Number.isInteger(amount) && amount >= 10 && amount % 10 === 0 && amount <= balance;
+      document.getElementById("win-return").textContent = valid ? `+${formatCredits(amount)} CR` : "—";
+      document.getElementById("lose-return").textContent = valid ? `−${formatCredits(amount)} CR` : "—";
+
+      if (balance < 10) {
+        betHelp.textContent = "残高が足りません。セッションをリセットしてください。";
+        betHelp.classList.add("error");
+      } else if (!valid) {
+        betHelp.textContent = `10 CR単位で入力してください（最大 ${formatCredits(balance)} CR）。`;
+        betHelp.classList.add("error");
+      } else {
+        betHelp.textContent = "勝てばベットと同額の利益。負けるとベット分を失います。";
+        betHelp.classList.remove("error");
+      }
+
+      betInput.max = String(balance);
+      betInput.disabled = balance < 10;
+      document.querySelectorAll(".hand-button, .quick-bets button").forEach((button) => {
+        button.disabled = balance < 10;
+      });
+    }
+
+    function play(playerName) {
+      const wager = Number(betInput.value);
+      if (!Number.isInteger(wager) || wager < 10 || wager % 10 !== 0 || wager > balance) {
+        updateBetPreview();
+        betInput.focus();
+        return;
+      }
+
+      const cpuChoice = hands[Math.floor(Math.random() * hands.length)];
+      const playerChoice = hands.find((hand) => hand.name === playerName);
+      const playerIndex = hands.indexOf(playerChoice);
+      const cpuIndex = hands.indexOf(cpuChoice);
+      const difference = (playerIndex - cpuIndex + hands.length) % hands.length;
+      const outcome = difference === 0 ? "draw" : difference === 2 ? "win" : "lose";
+      const netChange = outcome === "win" ? wager : outcome === "lose" ? -wager : 0;
+      balance += netChange;
+      round += 1;
+      records[outcome] += 1;
+
+      document.getElementById("player-hand").textContent = playerChoice.icon;
+      document.getElementById("cpu-hand").textContent = cpuChoice.icon;
+      document.getElementById("round-number").textContent = String(round).padStart(3, "0");
+      balanceDisplay.textContent = formatCredits(balance);
+      document.getElementById("wins").textContent = String(records.win);
+      document.getElementById("losses").textContent = String(records.lose);
+      document.getElementById("draws").textContent = String(records.draw);
+
+      const status = document.querySelector(".round-tag");
+      status.classList.remove("win", "lose", "draw");
+      status.classList.add(outcome);
+      status.querySelector("strong").textContent = String(round).padStart(3, "0");
+      if (outcome === "win") {
+        gameMessage.textContent = `WIN — +${formatCredits(wager)} CR`;
+      } else if (outcome === "lose") {
+        gameMessage.textContent = `LOSE — −${formatCredits(wager)} CR`;
+      } else {
+        gameMessage.textContent = "DRAW — BET REFUNDED";
+      }
+      gameMessage.className = `game-message ${outcome}`;
+      addHistory(playerChoice, cpuChoice, outcome, wager, round);
+      updateBetPreview();
+    }
+
+    function addHistory(playerChoice, cpuChoice, outcome, wager, roundNumber) {
+      const emptyMessage = historyList.querySelector(".history-empty");
+      if (emptyMessage) emptyMessage.remove();
+
+      const item = document.createElement("li");
+      item.className = `history-item ${outcome}`;
+      const topLine = document.createElement("div");
+      topLine.className = "history-topline";
+      const roundLabel = document.createElement("span");
+      roundLabel.textContent = `#${String(roundNumber).padStart(3, "0")} · ${outcome.toUpperCase()}`;
+      const amount = document.createElement("strong");
+      amount.textContent = outcome === "win" ? `+${formatCredits(wager)}` : outcome === "lose" ? `−${formatCredits(wager)}` : "REFUND";
+      topLine.append(roundLabel, amount);
+
+      const detail = document.createElement("span");
+      detail.className = "history-detail";
+      detail.textContent = `YOU ${playerChoice.name} ${playerChoice.icon}  /  CPU ${cpuChoice.name} ${cpuChoice.icon}`;
+      item.append(topLine, detail);
+      historyList.prepend(item);
+
+      while (historyList.children.length > 6) {
+        historyList.lastElementChild.remove();
+      }
+    }
+
+    betInput.addEventListener("input", updateBetPreview);
+    document.querySelectorAll(".hand-button").forEach((button) => {
+      button.addEventListener("click", () => play(button.dataset.hand));
+    });
+    document.querySelectorAll(".quick-bets button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const requested = button.dataset.bet === "max" ? balance : Number(button.dataset.bet);
+        const affordable = Math.min(requested, balance);
+        betInput.value = String(Math.floor(affordable / 10) * 10);
+        updateBetPreview();
+      });
+    });
+
+    document.getElementById("reset-button").addEventListener("click", () => {
+      balance = startingBalance;
+      round = 0;
+      records.win = 0;
+      records.lose = 0;
+      records.draw = 0;
+      balanceDisplay.textContent = formatCredits(balance);
+      betInput.value = "100";
+      document.getElementById("round-number").textContent = "001";
+      document.getElementById("player-hand").textContent = "?";
+      document.getElementById("cpu-hand").textContent = "?";
+      document.getElementById("wins").textContent = "0";
+      document.getElementById("losses").textContent = "0";
+      document.getElementById("draws").textContent = "0";
+      gameMessage.textContent = "ベットを決めて、出す手を選べ。";
+      gameMessage.className = "game-message";
+      document.querySelector(".round-tag").classList.remove("win", "lose", "draw");
+      historyList.replaceChildren();
+      const emptyMessage = document.createElement("li");
+      emptyMessage.className = "history-empty";
+      emptyMessage.textContent = "まだ対戦履歴はありません。";
+      historyList.append(emptyMessage);
+      updateBetPreview();
+    });
+
+    updateBetPreview();
+  </script>
+</body>
+</html>
